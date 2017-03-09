@@ -5,7 +5,7 @@ import android.content.Context;
 /**
  * Created by pinaki on 6/13/16.
  */
-public class NumberSpinner extends VerticalSpinner {
+/* package */ class NumberSpinner extends VerticalSpinner {
     private static final String[] NUMBERS = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
     public NumberSpinner(Context context, int textSizeInDP) {
