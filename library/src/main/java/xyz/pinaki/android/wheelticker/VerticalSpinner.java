@@ -14,7 +14,7 @@ import android.widget.TextView;
 /**
  * Created by pinaki on 6/9/16.
  */
-public class VerticalSpinner extends ScrollView {
+/* package */ class VerticalSpinner extends ScrollView {
     private static final int SPIN_ANIMATION_TIME_MILLISEC = 1000;
     private static final int DEFAULT_TEXT_SIZE_DP = 30;
 
