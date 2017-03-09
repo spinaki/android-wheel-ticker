@@ -23,4 +23,9 @@
             custom:num_digits="4"
             custom:digit_size="40"
             android:id="@+id/frequency_counter"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_below="@+id/frequency_counter"
+            android:layout_centerHorizontal="true"
+            android:text="Animate"
+            android:id="@+id/animate_button"/>
 </RelativeLayout>
