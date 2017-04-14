@@ -22,4 +22,4 @@ xyz.pinaki.android.wheelticker.demo.MainActivity
 
 This is how it will look like in full screen:
 
-![](![](https://github.com/spinaki/android-wheel-ticker/blob/master/assets/demo.gif))
+![](https://github.com/spinaki/android-wheel-ticker/blob/master/assets/demo.gif)
