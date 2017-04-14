@@ -1,5 +1,5 @@
 # android-wheel-ticker
-![](https://github.com/spinaki/android-wheel-ticker/blob/master/assets/wheel_ticker_compressed.gif.gif)
+![](https://github.com/spinaki/android-wheel-ticker/blob/master/assets/wheel_ticker_compressed.gif)
 
 Animation is similar to this [Odometer gadget](http://kevindion.com/2010/12/android-odometer-ui-tutorial-part-1/)
 However, implementation is significantly different.
