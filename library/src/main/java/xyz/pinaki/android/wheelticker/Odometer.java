@@ -2,6 +2,7 @@ package xyz.pinaki.android.wheelticker;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.database.DataSetObserver;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -14,7 +15,9 @@ import android.widget.TableRow;
 public class Odometer extends TableLayout {
     private static final int DEFAULT_DIGIT_SIZE_DP = 30;
     private static final int DEFAULT_NUM_DIGITS = 2;
+    // TODO: make this an array based on num of decimal places
     private NumberSpinner num1, num10, num100, num1K, num10K, num100K, num1M;
+    private OdometerAdapter odometerAdapter;
     private int numDigits = DEFAULT_NUM_DIGITS;
     private int digitSize = DEFAULT_DIGIT_SIZE_DP;
     private int currentValue = 0;
@@ -36,6 +39,16 @@ public class Odometer extends TableLayout {
         digitSize = typedArray.getInteger(R.styleable.Odometer_digit_size, DEFAULT_DIGIT_SIZE_DP);
         typedArray.recycle();
         init(context);
+    }
+
+    public void setAdapter(OdometerAdapter odometerAdapter) {
+        if (this.odometerAdapter != null) {
+            this.odometerAdapter.unregisterObserver(dataSetObserver);
+        }
+        this.odometerAdapter = odometerAdapter;
+        if (this.odometerAdapter != null) {
+            this.odometerAdapter.registerObserver(dataSetObserver);
+        }
     }
 
     private void init(Context context) {
@@ -78,7 +91,7 @@ public class Odometer extends TableLayout {
         this.addView(tableRow);
     }
 
-    public void spinTo(int num) {
+    private void spinTo(int num) {
         if (num < 0 || num >= 10e6) {
             throw new RuntimeException("Num should be within 0 and 10M: " + num);
         }
@@ -153,11 +166,27 @@ public class Odometer extends TableLayout {
     }
 
     private static void animateToInvisible(View view) {
-//        ObjectAnimator.ofFloat(view, View.ALPHA, 1, 0).setDuration(2000).start();
         view.setAlpha(0);
     }
 
-    public int getCurrentValue() {
-        return currentValue;
+    private void clearData() {
+        // TODO: unset stuff
+        invalidate();
     }
+
+    private final DataSetObserver dataSetObserver = new DataSetObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            spinTo(odometerAdapter.getNumber());
+        }
+
+        @Override
+        public void onInvalidated() {
+            super.onInvalidated();
+            // TODO clear the view data
+            clearData();
+        }
+    };
+
 }
