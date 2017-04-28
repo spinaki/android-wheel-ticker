@@ -13,9 +13,25 @@ However, implementation is significantly different.
 #How to use this
 Add the library dependency to your `build.gradle`.
 ```groovy
-compile 'xyz.pinaki.android:wheelticker:1.0.0'
+compile 'xyz.pinaki.android:wheelticker:1.0.1'
 ```
-See example usage in
+The main view class is `Odometer`. You may add the widget in your layout file as follows:
+~~~xml
+<xyz.pinaki.android.wheelticker.Odometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            custom:num_digits="4"
+            custom:digit_size="40"
+            android:id="@+id/frequency_counter"/>
+~~~
+The `num_digits` is the number of digits that will show up in the view.
+You can send data to the view using an implementation of the abstract class `OdometerAdapter`.
+* You will need to override the method `getNumber()` to return the number you intend to render in the widget.
+* Set the adapter to the view using `Odometer::setAdapter`.
+* Whenever something changes, make sure the `getNumber` methos returns the changed number and invoke `notifyDataSetChanged`
+
+See example usage in where a random integer is sent to the widget each time randomize is called.
 ~~~~
 xyz.pinaki.android.wheelticker.demo.MainActivity
 ~~~~
